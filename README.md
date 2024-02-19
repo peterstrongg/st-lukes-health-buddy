@@ -1,1 +1,1 @@
-# st-lukes-health-buddy
+# St. Lukes Health Buddy
