@@ -28,6 +28,12 @@
   color: #61dafb;
 }
 
+.Splash-logo {
+  width: 200px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

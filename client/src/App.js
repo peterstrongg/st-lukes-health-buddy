@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+/*import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -18,6 +18,25 @@ function App() {
           Learn React
         </a>
       </header>
+    </div>
+  );
+}
+
+export default App;
+*/
+
+import React from 'react';
+import logo from './StLukesUniHospital.jpg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <div className="Splash">
+        <img src={logo} className="Splash-logo" alt="logo" />
+        <h1>Welcome to St. Luke's Health Buddy</h1>
+        <p>Loading...</p>
+      </div>
     </div>
   );
 }
