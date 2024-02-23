@@ -11,7 +11,7 @@ CORS(app)
 
 @app.route("/")
 def home():
-    db = database.Database()
+    # db = database.Database()
     return render_template("index.html")
 
 if __name__ == "__main__":
