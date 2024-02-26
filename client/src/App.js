@@ -26,7 +26,7 @@ export default App;
 */
 
 import React from 'react';
-import logo from './StLukesUniHospital.jpg';
+import logo from './assets/StLukesUniHospital.jpg';
 import './App.css';
 
 function App() {
