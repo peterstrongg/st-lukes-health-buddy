@@ -9,8 +9,9 @@ from database import database
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
 
-@app.route("/")
-def home():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def home(path):
     # db = database.Database()
     return render_template("index.html")
 
