@@ -1,0 +1,9 @@
+.clear {
+    clear: both;
+  }
+  .video-wrapper {
+    width: 100%;
+    max-width: 650px; /* Adjust as needed */
+    margin: 0 auto; /* Center the video */
+  }
+  
