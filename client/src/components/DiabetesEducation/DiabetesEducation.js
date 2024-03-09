@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import './VideoTest.css';
+import './DiabetesEducation.css';
 
-function VideoTest() {
+function DiabetesEducation() {
   return (
-    <div className="videotest-container">
-      <h1>Video Test</h1>
+    <div className="diabeteseducation-container">
+      <h1>Diabetes Education</h1>
       <div className="video-wrapper">
         <iframe
           title="Vimeo Video"
@@ -27,5 +27,5 @@ function VideoTest() {
   );
 }
 
-export default VideoTest;
+export default DiabetesEducation;
 

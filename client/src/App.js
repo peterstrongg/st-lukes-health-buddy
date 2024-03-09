@@ -53,7 +53,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import logo from './StLukesUniHospital.jpg';
 import './App.css';
-import VideoTest from './components/VideoTest/VideoTest.js';
+import DiabetesEducation from './components/DiabetesEducation/DiabetesEducation.js';
 
 function App() {
   return (
@@ -61,7 +61,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Splash />} />
-          <Route path="/video-test" element={<VideoTest />} />
+          <Route path="/Diabetes-Education" element={<DiabetesEducation />} />
         </Routes>
       </div>
     </Router>
@@ -74,7 +74,7 @@ function Splash() {
       <img src={logo} className="Splash-logo" alt="logo" />
       <h1>Welcome to St. Luke's Health Buddy</h1>
       <p>Loading...</p>
-      <Link to="/video-test"><button>Click Me</button></Link>
+      <Link to="/Diabetes-Education"><button>Click Me</button></Link>
     </div>
   );
 }
