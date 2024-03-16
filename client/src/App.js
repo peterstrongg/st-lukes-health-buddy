@@ -61,7 +61,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Splash />} />
-          <Route path="/Diabetes-Education" element={<DiabetesEducation />} />
+          <Route path="/diabetes-education" element={<DiabetesEducation />} />
         </Routes>
       </div>
     </Router>
@@ -74,7 +74,7 @@ function Splash() {
       <img src={logo} className="Splash-logo" alt="logo" />
       <h1>Welcome to St. Luke's Health Buddy</h1>
       <p>Loading...</p>
-      <Link to="/Diabetes-Education"><button>Click Me</button></Link>
+      <Link to="/diabetes-education"><button>Click Me</button></Link>
     </div>
   );
 }
