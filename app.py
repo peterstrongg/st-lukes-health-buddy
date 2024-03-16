@@ -7,16 +7,13 @@ from flask import (
 from flask_cors import CORS
 from database import database
 
-
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 CORS(app)
-
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def home(path):
     return render_template("index.html")
-
 
 @app.route("/api/v1/training/<path:module>", methods=["GET"])
 def serve_training_module(module):
@@ -27,7 +24,6 @@ def serve_training_module(module):
         return jsonify(data)
     else:
         return abort(404)
-
 
 if __name__ == "__main__":
     app.run()

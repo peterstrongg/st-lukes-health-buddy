@@ -54,6 +54,7 @@ import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import logo from './StLukesUniHospital.jpg';
 import './App.css';
 import DiabetesEducation from './components/DiabetesEducation/DiabetesEducation.js';
+import PageNotFound from './components/PageNotFound/PageNotFound.js';
 
 function App() {
   return (
@@ -62,6 +63,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/diabetes-education" element={<DiabetesEducation />} />
+        
+          <Route path="*" element={<PageNotFound />} status={404} />
         </Routes>
       </div>
     </Router>
