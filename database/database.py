@@ -9,7 +9,6 @@ PG_HOST = os.getenv("PG_HOST")
 PG_PASSWORD = os.getenv("PG_PASSWORD")
 PG_PORT = os.getenv("PG_PORT")
 
-
 class Database:
     def __init__(self):
         self.conn = psycopg2.connect(
@@ -19,8 +18,6 @@ class Database:
             host=PG_HOST,
             port=PG_PORT
         )
-
-        pass
 
     def get_data_by_title(self, module):
         if module == "diabetes-education":
