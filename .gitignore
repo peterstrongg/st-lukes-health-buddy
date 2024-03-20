@@ -1,3 +1,4 @@
 /venv/
 /database/__pycache__/
 .env
+/client/node_modules

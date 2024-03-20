@@ -7,8 +7,12 @@ const pool = new Pool({
   database: 'd3hn81upsdt7ta',
   password: 'p3abe9db54f09a88279e1f5da77add778ddd27e4285f6981d37d5ac9bc64229ed',
   port: 5432,
-
+  ssl: {
+    rejectUnauthorized: false // Note: Setting this to false can pose security risks in production.
+  }
+  
 });
+
 
 // Connect to the database
 pool.connect((err, client, release) => {
