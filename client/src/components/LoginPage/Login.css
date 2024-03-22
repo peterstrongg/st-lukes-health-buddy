@@ -1,0 +1,29 @@
+/* login.css */
+
+.login {
+    width: 400px; 
+    margin: 0 auto;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login label {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    font-size: 20px; 
+}
+
+.login input {
+    flex: 1;
+    font-size: 28px; 
+    padding: 8px; 
+}
+
+.login button {
+    font-size: 28px; 
+    padding: 20px 20px; 
+    margin-top: 10px; 
+}
