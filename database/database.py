@@ -19,6 +19,8 @@ class Database:
                 host=PG_HOST,
                 port=PG_PORT
             )
+            self.__curs = self.__conn.cursor()
+
         except psycopg2.OperationalError as e:
             print("Database connection failed\n{0}").format(e)
     
@@ -30,3 +32,9 @@ class Database:
             })
         
         return False
+    
+    def authenticate_user(self, username, password):
+        # if username == "admin" and password == "password":
+        #     return True
+        # return False
+        pass
