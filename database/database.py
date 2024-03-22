@@ -11,14 +11,17 @@ PG_PORT = os.getenv("PG_PORT")
 
 class Database:
     def __init__(self):
-        self.conn = psycopg2.connect(
-            database=PG_DB_NAME,
-            user=PG_USER,
-            password=PG_PASSWORD,
-            host=PG_HOST,
-            port=PG_PORT
-        )
-
+        try:
+            self.__conn = psycopg2.connect(
+                database=PG_DB_NAME,
+                user=PG_USER,
+                password=PG_PASSWORD,
+                host=PG_HOST,
+                port=PG_PORT
+            )
+        except psycopg2.OperationalError as e:
+            print("Database connection failed\n{0}").format(e)
+    
     def get_data_by_title(self, module):
         if module == "diabetes-education":
             return ({
@@ -28,3 +31,4 @@ class Database:
         
         return False
 
+db = Database()
