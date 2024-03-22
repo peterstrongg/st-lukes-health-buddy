@@ -27,5 +27,4 @@ class Database:
             })
         
         return False
-    
-db = Database()
+
