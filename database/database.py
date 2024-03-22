@@ -38,3 +38,5 @@ class Database:
         #     return True
         # return False
         pass
+
+db = Database()
