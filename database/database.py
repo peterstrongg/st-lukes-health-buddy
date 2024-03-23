@@ -17,7 +17,7 @@ class Database:
                 database=PG_DB_NAME,
                 user=PG_USER,
                 password=PG_PASSWORD,
-                host=PG_HOST,
+                    host=PG_HOST,
                 port=PG_PORT
             )
             self.__curs = self.__conn.cursor()

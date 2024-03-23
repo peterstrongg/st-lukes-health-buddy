@@ -4,13 +4,17 @@ from flask import (
     make_response,
     jsonify,
     request,
-    abort
+    session
 )
 from flask_cors import CORS
+from flask_session import Session
 import json
 from database import database
 
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 CORS(app)
 
 @app.route('/', defaults={'path': ''})
@@ -43,9 +47,20 @@ def login():
         "authenticated" : auth_result
     }))
     if auth_result != 0:
-        response.set_cookie("cookie", "A")
+        response.set_cookie("session", "A")
 
     return response
+
+@app.route("/api/v1/test", methods=["GET", "POST"])
+def test():
+    if request.method == "POST":
+        session["session"] = request.cookies["session"]
+        return "COOKIE SET"
+    
+    if request.method == "GET":
+        if not session.get("session"):
+            return "FAIL"
+        return "PASS"
 
 if __name__ == "__main__":
     app.run()
