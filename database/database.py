@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import sql
 import os
 from dotenv import load_dotenv
 
@@ -34,9 +35,15 @@ class Database:
         return False
     
     def authenticate_user(self, username, password):
-        # if username == "admin" and password == "password":
-        #     return True
-        # return False
-        pass
+        query = sql.SQL(
+            "SELECT {} FROM {} WHERE username = %s AND password = %s;"
+        ).format(
+            sql.Identifier("uid"),
+            sql.Identifier("test_table"),
+        )
+        self.__curs.execute(query, (username, password))
+        data = self.__curs.fetchone()
+        if data:
+            return data[0]
+        return 0
 
-db = Database()
