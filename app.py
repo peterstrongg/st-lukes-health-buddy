@@ -21,12 +21,14 @@ def home(path):
 @app.route("/api/v1/training/<path:module>", methods=["GET"])
 def serve_training_module(module):
     db = database.Database()
-    data = db.get_data_by_title(module)
-
-    if data:
-        return jsonify(data)
-    else:
-        return abort(404)
+    (title, video_link, description) = db.get_module_data(module)
+    
+    response = make_response(jsonify({
+        "title" : title,
+        "video_link" : video_link,
+        "description" : description
+    }))
+    return response
 
 @app.route("/api/v1/login", methods=["POST"])
 def login():
@@ -37,19 +39,13 @@ def login():
     db = database.Database()
     auth_result = db.authenticate_user(username, password)
 
-    response = make_response(json.dumps({
+    response = make_response(jsonify({
         "authenticated" : auth_result
     }))
-    if auth_result == True:
+    if auth_result != 0:
         response.set_cookie("cookie", "A")
 
     return response
-
-
-@app.route("/api/v1/cookies", methods=["GET"])
-def cookies():
-    print(request.cookies)
-    return "COOKIES"
 
 if __name__ == "__main__":
     app.run()

@@ -25,25 +25,39 @@ class Database:
         except psycopg2.OperationalError as e:
             print("Database connection failed\n{0}").format(e)
     
-    def get_data_by_title(self, module):
-        if module == "diabetes-education":
-            return ({
-                "video" : "https://player.vimeo.com/video/552139023?h=cd454073fe", 
-                "description" : "Diabetes Education"
-            })
-        
-        return False
-    
     def authenticate_user(self, username, password):
         query = sql.SQL(
-            "SELECT {} FROM {} WHERE username = %s AND password = %s;"
+            """
+            SELECT {} FROM {} 
+            WHERE username = %s AND 
+            password = %s
+            """
         ).format(
             sql.Identifier("uid"),
-            sql.Identifier("test_table"),
+            sql.Identifier("test_users"),
         )
         self.__curs.execute(query, (username, password))
-        data = self.__curs.fetchone()
-        if data:
-            return data[0]
+        result = self.__curs.fetchone()
+        if result:
+            return result[0]
         return 0
+    
+    def get_module_data(self, module):
+        query = sql.SQL(
+            """
+            SELECT * FROM {}
+            WHERE module_name = %s
+            """
+        ).format(
+            sql.Identifier("test_module_info")
+        )
+        self.__curs.execute(query, (module,))
+        result = self.__curs.fetchone()
 
+        if result:
+            title = result[2]
+            video_link = result[3]
+            description = result[4]
+
+            return (title, video_link, description)
+        return ("", "", "")
