@@ -72,6 +72,9 @@ function App() {
 
           <Route path="/module" element={<PageNotFound />} />
           <Route path="*" element={<PageNotFound />} status={404} />
+
+
+          <Route path="/diabetes-education" element={<DiabetesEducation />} />
         </Routes>
       </div>
     </Router>
@@ -84,7 +87,7 @@ function Splash() {
       <img src={logo} className="Splash-logo" alt="logo" />
       <h1>Welcome to St. Luke's Health Buddy</h1>
       <p>Loading...</p>
-      <Link to="/module/diabetes-education"><button>Click Me</button></Link>
+      <Link to="/diabetes-education"><button>Click Me</button></Link>
     </div>
   );
 }
