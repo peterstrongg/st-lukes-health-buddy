@@ -57,6 +57,7 @@ import DiabetesEducation from './components/DiabetesEducation/DiabetesEducation.
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 import LoginPage from './components/LoginPage/Login.js';
 import CreatePage from './components/CreatePage/createpage.js';
+import TrainingModule from './components/TrainingModule/TrainingModule.js';
 
 function App() {
   return (
@@ -65,9 +66,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/diabetes-education" element={<DiabetesEducation />} />
+          <Route path="/module/*" element={<TrainingModule />} />
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-page" element={<CreatePage />} />
+
+          <Route path="/module" element={<PageNotFound />} />
           <Route path="*" element={<PageNotFound />} status={404} />
+          {/* <Route path="/test" element={<TrainingModule title="Diabetes Education" description="TEST DESCRIPTION" video="https://player.vimeo.com/video/552139023?h=cd454073fe"/>} /> */}
         </Routes>
       </div>
     </Router>

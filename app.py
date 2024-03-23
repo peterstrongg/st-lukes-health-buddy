@@ -4,21 +4,25 @@ from flask import (
     make_response,
     jsonify,
     request,
-    session
+    session,
+    redirect,
 )
 from flask_cors import CORS
 from flask_session import Session
 import json
+from datetime import timedelta
 from database import database
 
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours=1)
+app.config["SESSION_FILE_THRESHOLD"] = 128 
 Session(app)
 CORS(app)
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
 def home(path):
     return render_template("index.html")
 
@@ -34,30 +38,25 @@ def serve_training_module(module):
     }))
     return response
 
-@app.route("/api/v1/login", methods=["POST"])
+@app.route("/api/v1/login", methods=["GET", "POST"])
 def login():
-    data = json.loads(request.data)
-    username = data["username"]
-    password = data["password"]
-
-    db = database.Database()
-    auth_result = db.authenticate_user(username, password)
-
-    response = make_response(jsonify({
-        "authenticated" : auth_result
-    }))
-    if auth_result != 0:
-        response.set_cookie("session", "A")
-
-    return response
-
-@app.route("/api/v1/test", methods=["GET", "POST"])
-def test():
     if request.method == "POST":
-        session["session"] = request.cookies["session"]
-        return "COOKIE SET"
+        data = json.loads(request.data)
+        username = data["username"]
+        password = data["password"]
+
+        db = database.Database()
+        auth_result = db.authenticate_user(username, password)
+
+        response = make_response(jsonify({
+            "authenticated" : auth_result
+        }))
+        if auth_result != 0:
+            session["session"] = [auth_result, username]
+
+        return response
     
-    if request.method == "GET":
+    elif request.method == "GET":
         if not session.get("session"):
             return "FAIL"
         return "PASS"
