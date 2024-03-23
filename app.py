@@ -36,7 +36,10 @@ def serve_training_module(module):
         "video_link" : video_link,
         "description" : description
     }))
-    return response
+
+    if title and video_link and description:
+        return (response, 200)
+    return (response, 400)
 
 @app.route("/api/v1/login", methods=["GET", "POST"])
 def login():
