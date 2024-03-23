@@ -56,6 +56,7 @@ import './App.css';
 import DiabetesEducation from './components/DiabetesEducation/DiabetesEducation.js';
 import PageNotFound from './components/PageNotFound/PageNotFound.js';
 import LoginPage from './components/LoginPage/Login.js';
+import CreatePage from './components/CreatePage/createpage.js';
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
           <Route path="/" element={<Splash />} />
           <Route path="/diabetes-education" element={<DiabetesEducation />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/create-page" element={<CreatePage />} />
           <Route path="*" element={<PageNotFound />} status={404} />
         </Routes>
       </div>
