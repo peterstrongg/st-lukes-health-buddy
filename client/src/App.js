@@ -65,7 +65,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Splash />} />
-          <Route path="/diabetes-education" element={<DiabetesEducation />} />
           <Route path="/module/*" element={<TrainingModule />} />
 
           <Route path="/login" element={<LoginPage />} />
