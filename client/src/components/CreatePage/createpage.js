@@ -16,7 +16,11 @@ function CreatePage() {
     };
 
     const logout = () => {
-        console.log("TEST")
+        fetch("/api/v1/logout")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
     }
 
     return (

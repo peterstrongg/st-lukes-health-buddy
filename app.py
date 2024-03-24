@@ -68,6 +68,11 @@ def login():
             "loggedIn" : logged_in
         }))
         return response
+    
+@app.route("/api/v1/logout", methods=["GET"])
+def logout():
+    session.clear()
+    return jsonify(success=True)
 
 if __name__ == "__main__":
     app.run()
