@@ -68,7 +68,7 @@ def login():
             "loggedIn" : logged_in
         }))
         return response
-    
+
 @app.route("/api/v1/logout", methods=["GET"])
 def logout():
     session.clear()

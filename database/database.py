@@ -2,6 +2,7 @@ import psycopg2
 from psycopg2 import sql
 import os
 from dotenv import load_dotenv
+from hashlib import sha256
 
 load_dotenv(".env")
 PG_DB_NAME = os.getenv("PG_DB_NAME")
@@ -36,8 +37,10 @@ class Database:
             sql.Identifier("uid"),
             sql.Identifier("test_users"),
         )
-        self.__curs.execute(query, (username, password))
+        
+        self.__curs.execute(query, (username, self.__hash_password(password)))
         result = self.__curs.fetchone()
+        print(result)
         if result:
             return result[0]
         return 0
@@ -61,3 +64,6 @@ class Database:
 
             return (title, video_link, description)
         return ("", "", "")
+    
+    def __hash_password(self, password):
+        return sha256(password.encode('utf-8')).hexdigest()
