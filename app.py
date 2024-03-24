@@ -14,7 +14,7 @@ from datetime import timedelta
 from database import database
 
 app = Flask(__name__, static_folder="client/build/static", template_folder="client/build")
-app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours=1)
 app.config["SESSION_FILE_THRESHOLD"] = 128 
