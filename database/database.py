@@ -24,8 +24,11 @@ class Database:
             self.__curs = self.__conn.cursor()
 
         except psycopg2.OperationalError as e:
-            print("Database connection failed\n{0}").format(e)
+            print("Database connection failed")
     
+
+    # Public members
+            
     def authenticate_user(self, username, password):
         query = sql.SQL(
             """
@@ -40,7 +43,7 @@ class Database:
         
         self.__curs.execute(query, (username, self.__hash_password(password)))
         result = self.__curs.fetchone()
-        print(result)
+
         if result:
             return result[0]
         return 0
@@ -65,5 +68,27 @@ class Database:
             return (title, video_link, description)
         return ("", "", "")
     
+    def create_module(self, module_name, title, video_link, description):
+        query = sql.SQL(
+        """
+        INSERT INTO {} ({}, {}, {}, {}) 
+        VALUES (%s, %s, %s, %s)
+        """
+        ).format(
+            sql.Identifier("test_module_info"),
+            sql.Identifier("module_name"),
+            sql.Identifier("title"),
+            sql.Identifier("video_link"),
+            sql.Identifier("description")
+        )
+        try:
+            self.__curs.execute(query, (module_name, title, video_link, description))
+            self.__conn.commit()
+        except psycopg2.errors.UniqueViolation:
+            return False
+        return True
+
+    # Private Members
+
     def __hash_password(self, password):
         return sha256(password.encode('utf-8')).hexdigest()

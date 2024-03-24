@@ -74,6 +74,30 @@ def logout():
     session.clear()
     return jsonify(success=True)
 
+@app.route("/api/v1/admin/create-module", methods=["POST"])
+def create_module():
+    if not session.get("session"):
+        return (jsonify(success=False), 401)
+    
+    data = json.loads(request.data)
+    module_name = data["moduleName"]
+    title = data["title"]
+    video_link = data["videoLink"]
+    description = data["description"]
+
+    db = database.Database()
+    result = db.create_module(
+        module_name,
+        title,
+        video_link,
+        description
+    )
+
+    if result == True:
+        return (jsonify(success=True), 200)
+    return (jsonify(success=False), 400)
+    
+
 if __name__ == "__main__":
     app.run()
 
