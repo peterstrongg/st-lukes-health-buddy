@@ -60,9 +60,14 @@ def login():
         return response
     
     elif request.method == "GET":
+        logged_in = True
         if not session.get("session"):
-            return "FAIL"
-        return "PASS"
+            logged_in = False
+
+        response = make_response(jsonify({
+            "loggedIn" : logged_in
+        }))
+        return response
 
 if __name__ == "__main__":
     app.run()

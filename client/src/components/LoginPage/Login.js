@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Navigate } from "react-router-dom";
 import './Login.css';
 
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        fetch("/api/v1/login")
+        .then((response) => response.json())
+        .then(data => {
+            if(data["loggedIn"]) {
+                setLoggedIn(true)
+            }
+        })
+    }, [])
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -15,9 +27,29 @@ function LoginPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Username:", username);
-        console.log("Password:", password);
+        fetch("/api/v1/login", {
+            method: "POST",
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data["authenticated"] > 0) {
+                setLoggedIn(true)
+            }
+        })
     };
+
+    if (loggedIn) {
+        return (
+            <Navigate to="/create-page" replace={false} />
+        )
+    }
 
     return (
         <div className="login">

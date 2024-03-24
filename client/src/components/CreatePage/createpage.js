@@ -15,6 +15,10 @@ function CreatePage() {
         console.log("Link:", link);
     };
 
+    const logout = () => {
+        console.log("TEST")
+    }
+
     return (
         <div className="create-page">
             <h1>Create Page</h1>
@@ -37,6 +41,7 @@ function CreatePage() {
                 </div>
                 <button type="submit">Submit</button>
             </form>
+            <button onClick={logout}>Log out</button>
         </div>
     );
 }
