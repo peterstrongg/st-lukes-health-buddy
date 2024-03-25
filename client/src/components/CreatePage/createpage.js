@@ -133,7 +133,7 @@ function CreatePage() {
     }
     else if(!loading && !loggedIn) {
         return (
-            <Navigate to="/login" replace={false} />
+            <Navigate to="/login" replace={true} />
         )
     }
 }

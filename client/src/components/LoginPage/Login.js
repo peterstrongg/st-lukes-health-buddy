@@ -47,7 +47,7 @@ function LoginPage() {
 
     if (loggedIn) {
         return (
-            <Navigate to="/create-page" replace={false} />
+            <Navigate to="/create-page" replace={true} />
         )
     }
 
