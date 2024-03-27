@@ -55,7 +55,7 @@ class Database:
             WHERE module_name = %s
             """
         ).format(
-            sql.Identifier("test_module_info")
+            sql.Identifier("module")
         )
         self.__curs.execute(query, (module,))
         result = self.__curs.fetchone()
@@ -75,7 +75,7 @@ class Database:
         VALUES (%s, %s, %s, %s)
         """
         ).format(
-            sql.Identifier("test_module_info"),
+            sql.Identifier("module"),
             sql.Identifier("module_name"),
             sql.Identifier("title"),
             sql.Identifier("video_link"),
