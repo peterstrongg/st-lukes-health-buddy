@@ -39,6 +39,7 @@ function LoginPage() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log("TEST")
             if(data["authenticated"] > 0) {
                 setLoggedIn(true)
             }

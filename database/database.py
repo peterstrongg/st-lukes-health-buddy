@@ -38,7 +38,7 @@ class Database:
             """
         ).format(
             sql.Identifier("uid"),
-            sql.Identifier("test_users"),
+            sql.Identifier("users"),
         )
         
         self.__curs.execute(query, (username, self.__hash_password(password)))
@@ -92,3 +92,4 @@ class Database:
 
     def __hash_password(self, password):
         return sha256(password.encode('utf-8')).hexdigest()
+    
