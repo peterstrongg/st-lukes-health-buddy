@@ -37,7 +37,7 @@ class Database:
             password = %s
             """
         ).format(
-            sql.Identifier("uid"),
+            sql.Identifier("user_id"),
             sql.Identifier("users"),
         )
         
